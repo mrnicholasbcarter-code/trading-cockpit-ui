@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-ink-950 text-white min-h-screen font-sans antialiased; }
+}
+@layer components {
+  .glass-panel { @apply rounded-3xl border border-white/10 bg-white/[0.02] shadow-xl backdrop-blur-md; }
+  .metric-card { @apply rounded-2xl border border-white/5 bg-white/[0.035] p-5; }
+}
