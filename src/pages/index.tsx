@@ -6,6 +6,18 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { formatCurrency, Market, OrderBookLevel, useTradingStore } from '@/lib/tradingStore';
+import dynamic from 'next/dynamic';
+import { useMarketWebsocket, useOrderBookStore } from '@/hooks/useOrderBook';
+
+const PriceChart = dynamic(
+  () => import('../components/PriceChart').then((mod) => mod.PriceChart),
+  { ssr: false }
+);
+
+const TradesFeed = dynamic(
+  () => import('../components/TradesFeed').then((mod) => mod.TradesFeed),
+  { ssr: false }
+);
 
 const statusCopy = {
   live: 'Autonomous live',
@@ -262,8 +274,14 @@ function OrderBookSide({
  * @returns JSX.Element
  */
 function OrderBookPanel() {
-  const bids = useTradingStore((state) => state.bids);
-  const asks = useTradingStore((state) => state.asks);
+  const wsBids = useOrderBookStore((state) => state.bids);
+  const wsAsks = useOrderBookStore((state) => state.asks);
+  const storeBids = useTradingStore((state) => state.bids);
+  const storeAsks = useTradingStore((state) => state.asks);
+
+  const bids = wsBids.length > 0 ? wsBids : storeBids;
+  const asks = wsAsks.length > 0 ? wsAsks : storeAsks;
+
   const market = useTradingStore((state) =>
     state.markets.find((candidate) => candidate.id === state.selectedMarketId)
   );
@@ -507,6 +525,12 @@ function Hero() {
  */
 export default function Home() {
   const simulateTick = useTradingStore((state) => state.simulateTick);
+  const selectedMarketId = useTradingStore((state) => state.selectedMarketId);
+  
+  // Establish streaming WebSocket feed
+  useMarketWebsocket(selectedMarketId);
+  
+  const trades = useOrderBookStore((state) => state.trades);
 
   useEffect(() => {
     const timer = window.setInterval(simulateTick, 1400);
@@ -529,7 +553,9 @@ export default function Home() {
           <div className="grid gap-5 xl:grid-cols-[420px_minmax(0,1fr)_420px]">
             <MarketsPanel />
             <div className="space-y-5">
+              <PriceChart trades={trades} />
               <OrderBookPanel />
+              <TradesFeed trades={trades} />
               <PositionsPanel />
             </div>
             <div className="space-y-5">

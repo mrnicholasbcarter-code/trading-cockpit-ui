@@ -87,6 +87,7 @@ describe('useTradingStore', () => {
 
     const initialLatency = result.current.latencyMs;
     act(() => {
+      jest.spyOn(Math, 'random').mockReturnValue(0.8);
       result.current.simulateTick();
     });
 
