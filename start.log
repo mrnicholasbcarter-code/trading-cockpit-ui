@@ -1,0 +1,20 @@
+
+> trading-cockpit-ui@0.1.0 start
+> next start
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:2009:16)
+    at listenInCluster (node:net:2066:12)
+    at Server.listen (node:net:2171:7)
+    at /home/nick/trading-cockpit-ui/node_modules/next/dist/server/lib/start-server.js:280:16
+    at new Promise (<anonymous>)
+    at startServer (/home/nick/trading-cockpit-ui/node_modules/next/dist/server/lib/start-server.js:191:11)
+    at Module.nextStart (/home/nick/trading-cockpit-ui/node_modules/next/dist/cli/next-start.js:25:40)
+    at /home/nick/trading-cockpit-ui/node_modules/next/dist/bin/next:101:856 {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}

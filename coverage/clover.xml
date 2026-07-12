@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1783831133337" clover="3.2.0">
+  <project timestamp="1783831133338" name="All files">
+    <metrics statements="66" coveredstatements="66" conditionals="38" coveredconditionals="33" methods="60" coveredmethods="60" elements="164" coveredelements="159" complexity="0" loc="66" ncloc="66" packages="3" files="3" classes="3"/>
+    <package name="hooks">
+      <metrics statements="23" coveredstatements="23" conditionals="2" coveredconditionals="2" methods="11" coveredmethods="11"/>
+      <file name="useOrderBook.ts" path="/home/nick/trading-cockpit-ui/src/hooks/useOrderBook.ts">
+        <metrics statements="23" coveredstatements="23" conditionals="2" coveredconditionals="2" methods="11" coveredmethods="11"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="24" count="16" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+        <line num="33" count="11" type="stmt"/>
+        <line num="34" count="9" type="stmt"/>
+        <line num="36" count="9" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="45" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="57" count="9" type="stmt"/>
+        <line num="58" count="4" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="62" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib">
+      <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
+      <file name="tradingStore.ts" path="/home/nick/trading-cockpit-ui/src/lib/tradingStore.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="25" count="77" type="stmt"/>
+        <line num="27" count="352" type="stmt"/>
+        <line num="39" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages">
+      <metrics statements="36" coveredstatements="36" conditionals="32" coveredconditionals="27" methods="40" coveredmethods="40"/>
+      <file name="index.tsx" path="/home/nick/trading-cockpit-ui/src/pages/index.tsx">
+        <metrics statements="36" coveredstatements="36" conditionals="32" coveredconditionals="27" methods="40" coveredmethods="40"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="12" count="305" type="stmt"/>
+        <line num="16" count="90" type="stmt"/>
+        <line num="33" count="24" type="stmt"/>
+        <line num="34" count="24" type="stmt"/>
+        <line num="35" count="24" type="stmt"/>
+        <line num="36" count="24" type="stmt"/>
+        <line num="37" count="24" type="stmt"/>
+        <line num="71" count="40" type="stmt"/>
+        <line num="73" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="98" count="20" type="stmt"/>
+        <line num="99" count="20" type="stmt"/>
+        <line num="110" count="28" type="stmt"/>
+        <line num="117" count="84" type="stmt"/>
+        <line num="122" count="84" type="stmt"/>
+        <line num="135" count="20" type="stmt"/>
+        <line num="136" count="20" type="stmt"/>
+        <line num="137" count="22" type="stmt"/>
+        <line num="159" count="22" type="stmt"/>
+        <line num="160" count="22" type="stmt"/>
+        <line num="188" count="19" type="stmt"/>
+        <line num="205" count="13" type="stmt"/>
+        <line num="220" count="19" type="stmt"/>
+        <line num="221" count="13" type="stmt"/>
+        <line num="230" count="13" type="stmt"/>
+        <line num="244" count="19" type="stmt"/>
+        <line num="245" count="26" type="stmt"/>
+        <line num="246" count="26" type="stmt"/>
+        <line num="261" count="13" type="stmt"/>
+        <line num="262" count="19" type="stmt"/>
+        <line num="264" count="13" type="stmt"/>
+        <line num="265" count="13" type="stmt"/>
+        <line num="266" count="13" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
