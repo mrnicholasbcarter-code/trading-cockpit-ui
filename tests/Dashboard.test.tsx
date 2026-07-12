@@ -72,4 +72,84 @@ describe('Dashboard (Home)', () => {
     expect(screen.getByText('Pause bot')).toBeInTheDocument();
     expect(screen.getByText('Autonomous live')).toBeInTheDocument();
   });
+
+  it('displays risk metrics correctly', () => {
+    render(<Home />);
+    expect(screen.getByText('Buying power')).toBeInTheDocument();
+    expect(screen.getByText('$250,000.00')).toBeInTheDocument();
+    expect(screen.getByText('Daily P&L')).toBeInTheDocument();
+    expect(screen.getByText('$1,450.00')).toBeInTheDocument();
+    expect(screen.getByText('Exposure')).toBeInTheDocument();
+    expect(screen.getByText('12.5%')).toBeInTheDocument();
+    expect(screen.getByText('Fill rate')).toBeInTheDocument();
+    expect(screen.getByText('98.4%')).toBeInTheDocument();
+  });
+
+  it('displays order book levels correctly', () => {
+    render(<Home />);
+    expect(screen.getByText('Bid ladder')).toBeInTheDocument();
+    expect(screen.getByText('Ask ladder')).toBeInTheDocument();
+    // Check for price values that exist in the initial state
+    expect(screen.getByText('45.1¢')).toBeInTheDocument();
+    expect(screen.getByText('55.9¢')).toBeInTheDocument();
+  });
+
+  it('displays positions correctly', () => {
+    render(<Home />);
+    expect(screen.getByText('Open positions')).toBeInTheDocument();
+    expect(screen.getByText('Fed Cut')).toBeInTheDocument();
+    expect(screen.getByText('yes')).toBeInTheDocument();
+  });
+
+  it('displays activity logs correctly', () => {
+    render(<Home />);
+    expect(screen.getByText('Decision log')).toBeInTheDocument();
+    expect(screen.getByText('Risk Guard')).toBeInTheDocument();
+    expect(screen.getByText('Initialized state')).toBeInTheDocument();
+  });
+
+  it('displays hero section metrics', () => {
+    render(<Home />);
+    expect(screen.getByText('Live alpha routing')).toBeInTheDocument();
+    expect(screen.getByText('Institutional cockpit for event-market execution, risk, and agent oversight.')).toBeInTheDocument();
+    expect(screen.getByText('Best model edge')).toBeInTheDocument();
+    expect(screen.getByText('Visible liquidity')).toBeInTheDocument();
+  });
+
+  it('handles kill switch correctly', () => {
+    render(<Home />);
+    const killSwitchButton = screen.getByText('Arm kill switch');
+    fireEvent.click(killSwitchButton);
+    
+    expect(screen.getByText('Kill switch armed')).toBeInTheDocument();
+    expect(screen.getByText('Guarded mode')).toBeInTheDocument();
+    
+    // Click again to un-arm
+    fireEvent.click(screen.getByText('Kill switch armed'));
+    expect(screen.getByText('Arm kill switch')).toBeInTheDocument();
+    expect(screen.getByText('Autonomous live')).toBeInTheDocument();
+  });
+
+  it('displays market change indicator correctly', () => {
+    render(<Home />);
+    // Positive change should show green
+    expect(screen.getByText('+4.2%')).toBeInTheDocument();
+  });
+
+  it('handles multiple markets correctly', () => {
+    render(<Home />);
+    // Should display both markets - use getAllByText since text appears multiple times
+    const market1Elements = screen.getAllByText('Will Bitcoin reach $100k?');
+    const market2Element = screen.getByText('Fed cuts rates in Sept?');
+    expect(market1Elements.length).toBeGreaterThanOrEqual(1);
+    expect(market2Element).toBeInTheDocument();
+  });
+
+  it('displays correct market metrics', () => {
+    render(<Home />);
+    const yesPrices = screen.getAllByText('45.1¢');
+    const noPrices = screen.getAllByText('55.9¢');
+    expect(yesPrices.length).toBeGreaterThan(0);
+    expect(noPrices.length).toBeGreaterThan(0);
+  });
 });

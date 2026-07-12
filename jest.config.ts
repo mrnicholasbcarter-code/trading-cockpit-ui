@@ -16,6 +16,7 @@ const customJestConfig = {
     '!src/pages/_document.tsx',
     '!src/pages/_app.tsx',
   ],
+  testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
   coverageThreshold: {
     global: {
       statements: 80,
