@@ -1,0 +1,38 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.3.3
+    hooks:
+      - id: prettier
+        types_or: [javascript, typescript, jsx, tsx, json, css, scss, html, markdown, yaml, yml]
+        exclude: '^node_modules/|\.next/|coverage/|test-results/|dist/|build/'
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.57.0
+    hooks:
+      - id: eslint
+        types_or: [javascript, typescript, jsx, tsx]
+        args: ['--max-warnings=0']
+        exclude: '^node_modules/|\.next/|coverage/|test-results/|dist/|build/'
+
+  - repo: local
+    hooks:
+      - id: typecheck
+        name: TypeScript Type Check
+        entry: npx tsc --noEmit
+        language: system
+        types_or: [typescript, tsx]
+        exclude: '^node_modules/|\.next/|coverage/|test-results/|dist/|build/'
+        pass_filenames: false

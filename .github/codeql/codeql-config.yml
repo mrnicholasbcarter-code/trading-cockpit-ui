@@ -1,0 +1,20 @@
+name: "CodeQL config"
+
+queries:
+  - uses: security-and-quality
+
+paths-ignore:
+  - "node_modules"
+  - ".next"
+  - "coverage"
+  - "test-results"
+  - "dist"
+  - "build"
+  - "*.config.*"
+  - "*.lock"
+
+paths:
+  - "src"
+  - "tests"
+  - "*.ts"
+  - "*.tsx"

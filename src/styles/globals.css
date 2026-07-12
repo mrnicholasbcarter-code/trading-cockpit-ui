@@ -1,11 +1,36 @@
+/**
+ * Global Styles - Tailwind CSS with custom components
+ * @packageDocumentation
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  body { @apply bg-ink-950 text-white min-h-screen font-sans antialiased; }
+  /**
+   * Base styles for the application
+   * Sets dark background, white text, and font smoothing
+   */
+  body {
+    @apply bg-ink-950 text-white min-h-screen font-sans antialiased;
+  }
 }
+
 @layer components {
-  .glass-panel { @apply rounded-3xl border border-white/10 bg-white/[0.02] shadow-xl backdrop-blur-md; }
-  .metric-card { @apply rounded-2xl border border-white/5 bg-white/[0.035] p-5; }
+  /**
+   * Glass panel component - frosted glass effect with backdrop blur
+   * Used for all major UI panels
+   */
+  .glass-panel {
+    @apply rounded-3xl border border-white/10 bg-white/[0.02] shadow-xl backdrop-blur-md;
+  }
+
+  /**
+   * Metric card component - small stat display cards
+   * Used in hero section and dashboards
+   */
+  .metric-card {
+    @apply rounded-2xl border border-white/5 bg-white/[0.035] p-5;
+  }
 }
