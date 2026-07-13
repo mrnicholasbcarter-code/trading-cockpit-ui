@@ -19,3 +19,6 @@ build.log
 patch_*.py
 *.bak
 .DS_Store
+build.log
+dev.log
+output.html
