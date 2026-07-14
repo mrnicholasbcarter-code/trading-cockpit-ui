@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { formatCurrency, Market, OrderBookLevel, useTradingStore } from '@/lib/tradingStore';
+import { VirtualizedOrderBookSide } from '@/components/VirtualizedOrderBook';
 
 const statusCopy = {
   live: 'Autonomous live',
@@ -50,6 +51,9 @@ function Header() {
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-3">
+        <div className="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm text-blue-400 font-medium" title="No API credentials required for simulation">
+          Live Mock Mode
+        </div>
         <div className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-slate-300">
           Feed latency <span className="font-semibold text-green-400 tabular-nums">{latencyMs}ms</span>
         </div>
@@ -113,28 +117,14 @@ function MarketsPanel() {
   );
 }
 
-function OrderBookSide({ title, levels, side }: { title: string; levels: OrderBookLevel[]; side: 'bid' | 'ask' }) {
-  const maxVolume = Math.max(...levels.map((level) => level.volume), 1);
-  return (
-    <div className="space-y-2">
-      <div className="flex justify-between px-1 text-xs uppercase tracking-[0.2em] text-slate-500"><span>{title}</span><span>Volume</span></div>
-      {levels.map((level) => (
-        <div key={`${side}-${level.price}`} className="relative overflow-hidden rounded-xl border border-white/5 bg-white/[0.035] px-3 py-2">
-          <div className={classNames('absolute inset-y-0 right-0', side === 'bid' ? 'bg-green-500/10' : 'bg-red-500/10')} style={{ width: `${(level.volume / maxVolume) * 100}%` }} />
-          <div className="relative flex justify-between text-sm tabular-nums">
-            <span className={side === 'bid' ? 'text-green-400' : 'text-red-500'}>{level.price.toFixed(1)}¢</span>
-            <span className="text-slate-300">{level.volume.toLocaleString()}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+
 
 function OrderBookPanel() {
   const bids = useTradingStore((state) => state.bids);
   const asks = useTradingStore((state) => state.asks);
   const market = useTradingStore((state) => state.markets.find((candidate) => candidate.id === state.selectedMarketId));
+  const maxBidVolume = Math.max(...bids.map(l => l.volume), 1);
+  const maxAskVolume = Math.max(...asks.map(l => l.volume), 1);
   return (
     <section className="glass-panel p-5">
       <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -148,8 +138,13 @@ function OrderBookPanel() {
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <OrderBookSide title="Bid ladder" levels={bids} side="bid" />
-        <OrderBookSide title="Ask ladder" levels={asks} side="ask" />
+        <VirtualizedOrderBookSide title="Bid ladder" levels={bids} side="bid" maxVolume={maxBidVolume} />
+        <VirtualizedOrderBookSide title="Ask ladder" levels={asks} side="ask" maxVolume={maxAskVolume} />
+      </div>
+      <div className="mt-4 flex gap-4 text-xs text-slate-500 border-t border-white/10 pt-4">
+        <span>Dataset size: {bids.length + asks.length} levels</span>
+        <span>Update rate: 1.4s</span>
+        <span>Render budget: &lt;16ms (Virtualized)</span>
       </div>
     </section>
   );
